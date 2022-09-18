@@ -6,6 +6,7 @@ import logo from "../../assets/img/Vintage Soul Store.png";
 import { SignInApi } from "../../service/VintageSoulService";
 import WrapperInput from "../styled-components/WrapperInput";
 import WrapperButton from "../styled-components/WrapperButton";
+import Footer from "../Footer/Footer";
 
 export default function SignIn() {
 	const [emailSignIn, setEmailSignIn] = useState("");
@@ -78,6 +79,7 @@ export default function SignIn() {
 				) : (
 					<p>Primeira Vez? Cadastre-se!</p>
 				)}
+				<Footer/>
 			</WrapperFormAuth>
 		</>
 	);

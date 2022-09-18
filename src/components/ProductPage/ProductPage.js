@@ -15,7 +15,7 @@ export default function ProductPage() {
 			.catch((res) => {
 				alert(res.response.data);
 			});
-	}, []);
+	}, [idProduct]);
 
 	function priceTags(price) {
 		const formatedPrice = (price / 100).toFixed(2).split(".").join(",");
