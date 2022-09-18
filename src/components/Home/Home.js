@@ -52,6 +52,7 @@ const Banner = styled.img`
 	width: 100%;
 	height: 280px;
 	object-fit: fill;
+	margin-top: 70px;
 `
 const WrapperHome = styled.div`
 	display: flex;

@@ -13,7 +13,7 @@ function getToken() {
 		return {token, name: auth.name};
 	}
 	return false;
-};
+}
 
 function SignInApi(body) {
     const promise = axios.post(`${BASE_URL}/sign-in`, body);
@@ -30,11 +30,16 @@ function getProductsApi(limit) {
     return promise;
 };
 
-function getCart() {
+function getCartApi() {
 	const auth = getToken();	
 		const promise = axios.get(`${BASE_URL}/cart`,auth.token );
 		return promise;
 
 };
 
-export {SignInApi, SignUpApi, getToken, getCart, getProductsApi};
+function getProductApi({idProduct}) {
+	const promise = axios.get(`${BASE_URL}/product/${idProduct}`);
+	return promise;
+}
+
+export {SignInApi, SignUpApi, getToken, getCartApi, getProductsApi, getProductApi};

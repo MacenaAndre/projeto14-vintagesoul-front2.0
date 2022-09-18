@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-import { getCart, getToken } from "../../service/VintageSoulService";
+import { getCartApi, getToken } from "../../service/VintageSoulService";
 import logo from "../../assets/img/logo.jpeg";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function Header() {
 	const [userProducts, setUserProducts] = useState([]);
@@ -15,34 +15,33 @@ export default function Header() {
 			navigate("/sign-in");
 		}
 	}
-		
+
 	useEffect(() => {
-		const promise = getCart();
+		const promise = getCartApi();
 		promise.catch((error) => {
 			if (error.code === "ERR_NETWORK") {
 				return alert("Falha ao conectar com o servidor");
 			}
 			alert(error.response.data);
 		});
-		promise.then((res) => {			
+		promise.then((res) => {
 			setUserProducts(res.data);
 		});
 	}, []);
 	return (
 		<Wrapper>
-			<img src={logo} alt="logo"></img>
+			<Link to={"/"}>
+				<img src={logo} alt="logo"></img>
+			</Link>
 			<Menu>
 				{isLogged ? (
 					<>
 						<p>Olá, {isLogged.name}</p>
 						<Link to={"/checkout"}>
-							<p>ck</p>						
+							<p>ck</p>
 						</Link>
 						<h2>{`(${userProducts.length})`}</h2>
 						<p onClick={() => logout()}>L</p>
-							
-							
-						
 					</>
 				) : (
 					<>
@@ -67,8 +66,11 @@ const Wrapper = styled.div`
 	background-color: black;
 	color: white;
 	padding: 15px;
+	position: fixed;
+	top: 0;
+	left: 0;	
 	img {
-		height: 100%;
+		height: 70px;
 	}
 	p {
 		color: white;
@@ -81,7 +83,7 @@ const Menu = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	width: 150px;
-	h2{
+	h2 {
 		font-size: 10px;
 	}
 `;
