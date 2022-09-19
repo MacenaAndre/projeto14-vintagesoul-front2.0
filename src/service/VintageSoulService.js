@@ -59,6 +59,12 @@ function editUserAddress(address) {
 	return promise;
 }
 
+function getUserAddress() {
+	const auth = getToken();
+	const promise = axios.get(`${BASE_URL}/user`, auth.token);
+	return promise;
+}
+
 export {
 	SignInApi,
 	SignUpApi,
@@ -68,5 +74,6 @@ export {
 	getProductApi,
 	postCartApi,
 	deleteItemCart,
-	editUserAddress
+	editUserAddress,
+	getUserAddress
 };
