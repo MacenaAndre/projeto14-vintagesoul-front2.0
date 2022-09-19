@@ -40,7 +40,7 @@ export default function ProductInfo({ product }) {
 					</span>
 				</>
 			)}
-			<h4>Disponivel em estoque: {product.inventory}</h4>
+			
 		</Wrapper>
 	);
 }
@@ -80,10 +80,5 @@ const Wrapper = styled.div`
 		font-weight: 400;
 		text-indent: 0.5em;
 		text-align: justify;
-	}
-	h4 {
-		font-size: 14px;
-		color: green;
-		margin-top: 25px;
-	}
+	}	
 `;
