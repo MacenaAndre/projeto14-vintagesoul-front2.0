@@ -30,10 +30,10 @@ const Card = styled.div`
     flex-direction: column;
     align-items: center;
     background-color: #edede9;
-	height: 230px;
+	height: 250px;
 	width: 160px;
 	margin: 15px;
-	padding: 10px 5px;
+	padding: 8px 3px;
     border-radius: 15px;
     cursor: pointer;
 
