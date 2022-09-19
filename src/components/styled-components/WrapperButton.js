@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export default function WrapperButton({ value, disabled }) {
-	return <Wrapper disabled={disabled}>{value}</Wrapper>;
+export default function WrapperButton({ value, disabled, ...otherProps }) {
+	return <Wrapper disabled={disabled} {...otherProps}>{value}</Wrapper>;
 }
 const Wrapper = styled.button`
 	height: 58px;

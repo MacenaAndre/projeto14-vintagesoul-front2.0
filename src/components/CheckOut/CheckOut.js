@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { getCartApi } from "../../service/VintageSoulService";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import WrapperButton from "../styled-components/WrapperButton";
 import CardCartItem from "./CradCartItem";
+import {BsFillCartFill} from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 export default function CheckOut() {
+    const navigate = useNavigate();
     const [cart, setCart] = useState([]);
     const [refresh, setRefresh] = useState(true);
     const cartPrices = cart.map((value) => value.price*value.quantity)
@@ -32,7 +34,7 @@ export default function CheckOut() {
         <>
             <Header />
             <Wrapper>
-                <h3>Carrinho + incone</h3>
+                <h3>Carrinho  <BsFillCartFill height="27px" width="27px"/></h3>
                 {cart.map((value, index) => (
                 <CardCartItem
                     key={index}
@@ -48,10 +50,9 @@ export default function CheckOut() {
                 <Total>
                     <h1>Total</h1>
                     <h1>R$ {formatedTotal}</h1>
-                </Total>
-                <Link to="/adress">
-                    <WrapperButton value="Ir para endereço de entrega"></WrapperButton>
-                </Link>
+                </Total>                
+                    <WrapperButton value="Ir para endereço de entrega"  onClick={()=>navigate("/adress")}/>
+                
             </Wrapper>
             <Footer/>
         </>
