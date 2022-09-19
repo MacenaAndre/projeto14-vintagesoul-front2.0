@@ -27,11 +27,11 @@ export default function ProductPage() {
 	}, [idProduct]);
 
 	function increaseQuantity() {
-		const newValue = quantity + 1;
+		const newValue = Number(quantity) + 1;
 		setQuantity(newValue);
 	}
 	function decreaseQuantity() {
-		const newValue = quantity - 1;
+		const newValue = Number(quantity) - 1;
 		setQuantity(newValue);
 	}
 
@@ -47,7 +47,7 @@ export default function ProductPage() {
 			title: product.title,
 			price: product.price,
 			idProduct: product._id,
-			quantity: quantity			
+			quantity: quantity,
 		});
 		request.then(() => {
 			alert("Produto adicionado ao carrinho");
@@ -71,6 +71,7 @@ export default function ProductPage() {
 					<ProductInfo product={product} />
 					<form onSubmit={addToCart}>
 						<QuantityControl>
+							<p>Quantidade:</p>
 							<ButtonAdd onClick={() => decreaseQuantity()}>-</ButtonAdd>
 							<input
 								type="number"
@@ -80,13 +81,15 @@ export default function ProductPage() {
 								onChange={(e) => setQuantity(e.target.value)}
 								required
 							></input>
-							<ButtonAdd onClick={() => increaseQuantity()}>+</ButtonAdd>
+							<ButtonAdd onClick={() => increaseQuantity()}>+</ButtonAdd>							
 						</QuantityControl>
+						<h4>Disponivel em estoque: {product.inventory}</h4>
+						
 						<WrapperButton value={"Adicionar ao carrinho"} />
 					</form>
 				</Wrapper>
 			)}
-			<Footer/>
+			<Footer />
 		</>
 	);
 }
@@ -105,6 +108,15 @@ const Wrapper = styled.div`
 		align-items: center;
 		width: 100%;
 	}
+	h4 {
+		font-size: 14px;
+		color: green;
+		margin-top: 3px;
+		margin-bottom: 25px;
+	}
+	p{
+		margin-right: 15px;
+	}
 `;
 const ButtonAdd = styled.div`
 	display: flex;
@@ -120,13 +132,13 @@ const ButtonAdd = styled.div`
 `;
 const QuantityControl = styled.div`
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
-	width: 70px;
+	width: 100%;
 	input {
 		display: flex;
-		width: 20px;
-		justify-content: center;
-		align-items: center;
+		width: 40px;
+		text-align: center;
+		margin: 0 2px;
 	}
 `;

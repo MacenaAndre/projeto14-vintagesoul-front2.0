@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { getCartApi, getToken } from "../../service/VintageSoulService";
 import logo from "../../assets/img/logo.jpeg";
 import { useState, useEffect } from "react";
+import {BsFillCartFill} from "react-icons/bs";
+import {BiLogOut} from "react-icons/bi";
+
 
 export default function Header() {
 	const [userProducts, setUserProducts] = useState([]);
@@ -21,8 +24,7 @@ export default function Header() {
 		promise.catch((error) => {
 			if (error.code === "ERR_NETWORK") {
 				return alert("Falha ao conectar com o servidor");
-			}
-			alert(error.response.data);
+			}			
 		});
 		promise.then((res) => {
 			setUserProducts(res.data);
@@ -37,11 +39,13 @@ export default function Header() {
 				{isLogged ? (
 					<>
 						<p>Olá, {isLogged.name}</p>
+						<div>
 						<Link to={"/checkout"}>
-							<p>ck</p>
+						<BsFillCartFill color="white" width="25px" height="25px" />
 						</Link>
 						<h2>{`(${userProducts.length})`}</h2>
-						<p onClick={() => logout()}>L</p>
+						<BiLogOut color="white" width="25px" height="25px" onClick={() => logout()} />
+						</div>
 					</>
 				) : (
 					<>
@@ -85,8 +89,14 @@ const Menu = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 150px;
+	width: 200px;
 	h2 {
 		font-size: 10px;
+	}
+	div{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 65px;
 	}
 `;
