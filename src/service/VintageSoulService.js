@@ -47,6 +47,12 @@ function postCartApi(product) {
 	return promise;
 }
 
+function deleteItemCart(id) {
+	const auth = getToken();
+	const promise = axios.delete(`${BASE_URL}/cart/${id}`, auth.token);
+	return promise;
+}
+
 export {
 	SignInApi,
 	SignUpApi,
@@ -55,4 +61,5 @@ export {
 	getProductsApi,
 	getProductApi,
 	postCartApi,
+	deleteItemCart
 };

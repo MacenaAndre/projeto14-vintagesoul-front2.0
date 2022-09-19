@@ -1,12 +1,19 @@
 import styled from "styled-components";
+import { deleteItemCart } from "../../service/VintageSoulService";
 
-export default function CardCartItem({ id, image, title, quantity, price }) {
+export default function CardCartItem({ id, image, title, quantity, price, refresh, setRefresh }) {
     const cardTotalPrice = price*quantity;
     const formatedPrice = (cardTotalPrice/100).toFixed(2).split(".").join(",");
     
 
     function deleteItem (id) {
-        return;
+        deleteItemCart(id)
+            .catch((res) => {
+                alert(res.message);
+            })
+            .then((res) => {
+                setRefresh(!refresh)
+            })
     };
 
     return (
@@ -29,9 +36,9 @@ const Card = styled.div`
     background-color: #edede9;
     border-radius: 15px;
     padding: 10px 10px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     position: relative;
-    box-shadow: 8px 10px 20px 0px #00000040;
+    box-shadow: 6px 8px 10px 0px #00000040;
     border: 1px solid lightgrey;
     
     & img {

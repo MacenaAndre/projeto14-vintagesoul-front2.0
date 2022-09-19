@@ -9,6 +9,7 @@ import CardCartItem from "./CradCartItem";
 
 export default function CheckOut() {
     const [cart, setCart] = useState([]);
+    const [refresh, setRefresh] = useState(true);
     const cartPrices = cart.map((value) => value.price*value.quantity)
     const initialValue = 0;
     const total = cartPrices.reduce((previousValue, currentValue) =>
@@ -25,12 +26,13 @@ export default function CheckOut() {
             .then((res) => {
                 setCart(res.data);
             })
-    }, [setCart]);
+    }, [setCart, refresh]);
 
     return (
         <>
             <Header />
             <Wrapper>
+                <h3>Carrinho + incone</h3>
                 {cart.map((value, index) => (
                 <CardCartItem
                     key={index}
@@ -39,11 +41,13 @@ export default function CheckOut() {
                     title={value.title}
                     quantity={value.quantity}
                     price={value.price}
+                    refresh={refresh}
+                    setRefresh={setRefresh}
                 />
                 ))}
                 <Total>
-                    <h1>Total:</h1>
-                    <h1>{formatedTotal}</h1>
+                    <h1>Total</h1>
+                    <h1>R$ {formatedTotal}</h1>
                 </Total>
                 <Link to="/adress">
                     <WrapperButton value="Ir para endereço de entrega"></WrapperButton>
@@ -61,12 +65,19 @@ const Wrapper = styled.div`
     width: 100%;
     min-height: 90vh;
     padding: 90px 0px 20px 0px;
+
+    & h3 {
+        width: 90%;
+        font-size: 27px;
+        margin-bottom: 30px;
+        margin-top: 10px;
+    }
 `
 const Total = styled.div`
     width: 90%;
     display: flex;
     justify-content: space-between;
-    margin: 10px 0px 40px 0px;
+    margin: 30px 0px 40px 0px;
 
     & h1 {
         font-size: 27px;
