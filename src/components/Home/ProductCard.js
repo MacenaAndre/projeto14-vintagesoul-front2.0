@@ -18,8 +18,10 @@ export default function ProductCard({ title, image, genre, price, id }) {
                        return  <span key={index}>{value}, </span>
                     }
                 })}</h2>
-                <h3>R$ {formatedPrice}</h3>
-                <h4>ou 3x R$ {splitedPrice}</h4>
+                <div>
+                    <h3>R$ {formatedPrice}</h3>
+                    <h4>ou 3x R$ {splitedPrice}</h4>
+                </div>
             </Card>
         </>
     );
@@ -35,6 +37,9 @@ const Card = styled.div`
 	margin: 15px;
 	padding: 8px 3px;
     border-radius: 15px;
+    border: 1px solid lightgrey;
+    position: relative;
+    box-shadow: 8px 10px 20px 0px #00000040;
     cursor: pointer;
 
     & img {
@@ -70,5 +75,10 @@ const Card = styled.div`
         color: red;
         padding-left: 10px;
         width: 100%;
+    }
+    div {
+        position: absolute;
+        left: 3px;
+        bottom: 8px;
     }
 `

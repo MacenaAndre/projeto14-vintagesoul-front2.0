@@ -17,8 +17,8 @@ const WrapperFooter = styled.div`
     width: 100%;
     padding: 30px;
     background-color: black;
-    box-shadow: 0px -8px 8px 0px #00000060;
-bottom: 0px;
+    box-shadow: 0px -6px 6px 0px #00000045;
+    bottom: 0px;
     & h1 {
         color: white;
     }
