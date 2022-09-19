@@ -25,4 +25,5 @@ const Wrapper = styled.button`
 		background-color: #ffffff;
 		opacity: 0.7;
 	} */
+
 `;

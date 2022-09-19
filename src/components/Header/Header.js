@@ -68,7 +68,8 @@ const Wrapper = styled.div`
 	padding: 15px;
 	position: fixed;
 	top: 0;
-	left: 0;	
+	left: 0;
+	z-index: 1;
 	img {
 		height: 70px;
 	}
