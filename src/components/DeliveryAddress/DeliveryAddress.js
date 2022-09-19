@@ -2,45 +2,46 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { WrapperFormAuth } from "../styled-components";
 import { ThreeDots } from "react-loader-spinner";
-import { SignUpApi } from "../../service/VintageSoulService";
+import { editUserAddress, SignUpApi } from "../../service/VintageSoulService";
 import WrapperInput from "../styled-components/WrapperInput";
 import WrapperButton from "../styled-components/WrapperButton";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import styled from "styled-components";
 
-export default function DeliveryAdress() {
+export default function DeliveryAddress() {
     const [state, setState] = useState("");
 	const [city, setCity] = useState("");
 	const [district, setDistrict] = useState("");
 	const [street, setStreet] = useState("");
     const [number, setNumber] = useState("");
     const [complement, setComplement] = useState("");
-	const [buttonSignUp, setButtonSignUp] = useState(false);
+	const [buttonAddress, setButtonAddress] = useState(false);
+	const [address, setAddress] = useState({});
+	const [refreshAddress, setRefreshAddress] = useState(false);
 	const navigate = useNavigate();
 
-	function SignUpConecction(e) {
+	function AddressConecction(e) {
 		e.preventDefault();
-		setButtonSignUp(true);
-		if (district !== street) {
-			setButtonSignUp(false);
-			return alert("As senhas digitadas não coincidem!");
-		}
-		const body = {
+		setButtonAddress(true);
+		
+		const address = {
 			state,
 			city,
 			district,
+			street,
+			number: Number(number),
+			complement
 		};
 
-		SignUpApi(body)
-			.then((res) => {
-				alert("Usuário cadastrado com sucesso!");
-				navigate("/sign-in");
-			})
+		editUserAddress(address) 
 			.catch((res) => {
-				setButtonSignUp(false);
-				alert(res.response.data);
-			});
+				alert(res.message)
+				setButtonAddress(false)
+			})
+			.then((res) => {
+				setRefreshAddress(!refreshAddress);
+			})
 	}
 
 	return (
@@ -48,12 +49,12 @@ export default function DeliveryAdress() {
             <Header/>
 			<WrapperFormAuth>
 				<Title>Preencha o seu endereço de Entrega:</Title>
-				<form onSubmit={SignUpConecction}>
+				<form onSubmit={AddressConecction}>
 					<WrapperInput
 						placeholder="Estado"
 						type="text"
 						value={state}
-						disabled={buttonSignUp}
+						disabled={buttonAddress}
 						onChange={(e) => setState(e.target.value)}
 						required
 					></WrapperInput>
@@ -61,7 +62,7 @@ export default function DeliveryAdress() {
 						placeholder="Cidade"
 						type="text"
 						value={city}
-						disabled={buttonSignUp}
+						disabled={buttonAddress}
 						onChange={(e) => setCity(e.target.value)}
 						required
 					></WrapperInput>
@@ -69,7 +70,7 @@ export default function DeliveryAdress() {
 						placeholder="Bairro"
 						type="text"
 						value={district}
-						disabled={buttonSignUp}
+						disabled={buttonAddress}
 						onChange={(e) => setDistrict(e.target.value)}
 						required
 					></WrapperInput>
@@ -77,7 +78,7 @@ export default function DeliveryAdress() {
 						placeholder="Rua"
 						type="text"
 						value={street}
-						disabled={buttonSignUp}
+						disabled={buttonAddress}
 						onChange={(e) => setStreet(e.target.value)}
 						required
 					></WrapperInput>
@@ -86,7 +87,7 @@ export default function DeliveryAdress() {
 						type="number"
                         min="1"
 						value={number}
-						disabled={buttonSignUp}
+						disabled={buttonAddress}
 						onChange={(e) => setNumber(e.target.value)}
 						required
 					></WrapperInput>
@@ -94,16 +95,16 @@ export default function DeliveryAdress() {
 						placeholder="Complemento"
 						type="text"
 						value={complement}
-						disabled={buttonSignUp}
+						disabled={buttonAddress}
 						onChange={(e) => setComplement(e.target.value)}
 						required
 					></WrapperInput>
-					{!buttonSignUp ? (
-						<WrapperButton value={"Cadastrar"} disabled={buttonSignUp} />
+					{!buttonAddress ? (
+						<WrapperButton value={"Cadastrar"} disabled={buttonAddress} />
 					) : (
 						<WrapperButton
 							value={<ThreeDots color="white" height="13px" />}
-							disabled={buttonSignUp}
+							disabled={buttonAddress}
 						/>
 					)}
 				</form>

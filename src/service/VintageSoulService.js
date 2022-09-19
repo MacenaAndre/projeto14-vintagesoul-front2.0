@@ -53,6 +53,12 @@ function deleteItemCart(id) {
 	return promise;
 }
 
+function editUserAddress(address) {
+	const auth = getToken();
+	const promise = axios.put(`${BASE_URL}/user`, address, auth.token);
+	return promise;
+}
+
 export {
 	SignInApi,
 	SignUpApi,
@@ -61,5 +67,6 @@ export {
 	getProductsApi,
 	getProductApi,
 	postCartApi,
-	deleteItemCart
+	deleteItemCart,
+	editUserAddress
 };
