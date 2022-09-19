@@ -11,7 +11,6 @@ export default function ConfirmPurchase () {
         <Wrapper>
             <img src={checkIcon} alt="check"></img>
             <h1>Compra feita com Sucesso</h1>
-            <h2>Seu ID do pedido é:  {}</h2>
             <Link to="/">Voltar Para Home</Link>
         </Wrapper>
         <Footer/>
