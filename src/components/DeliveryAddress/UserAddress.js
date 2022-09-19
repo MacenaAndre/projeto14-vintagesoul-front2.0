@@ -1,18 +1,18 @@
+import { useState } from "react";
+import { ThreeDots } from "react-loader-spinner";
 import styled from "styled-components";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import WrapperButton from "../styled-components/WrapperButton";
 
-export default function UserAddress({ address }) {
-    
-    function changePage () {
-        console.log("ola")
-    };
+export default function UserAddress({ address, setBolean }) {
+    const [buttonPurchase, setButtonPurchase] = useState(false);
 
     return (
         <>
             <Header/>
             <Wrapper>
+                <Title>Endereço de entrega:</Title>
                 <div>
                     <h1>Estado:</h1>
                     <h2>{address.state}</h2>
@@ -37,8 +37,23 @@ export default function UserAddress({ address }) {
                     <h1>Complemento:</h1>
                     <h2>{address.complement}</h2>
                 </Last>
-                <WrapperButton onClick={() => changePage()} value="Editar endereço"/>
-                <WrapperButton value="Finalizar pedido"/>
+                
+                {!buttonPurchase ? (
+                        <WrapperButton onClick={() => setBolean(false)} value="Editar endereço"/>
+					) : (
+						<WrapperButton
+							value={<ThreeDots color="white" height="13px" />}
+							disabled={buttonPurchase}
+						/>
+					)};
+                {!buttonPurchase ? (
+                        <WrapperButton value={"Finalizar pedido"} disabled={buttonPurchase} />
+					) : (
+						<WrapperButton
+							value={<ThreeDots color="white" height="13px" />}
+							disabled={buttonPurchase}
+						/>
+					)};
             </Wrapper>
             <Footer/>
         </>
@@ -64,4 +79,8 @@ const Wrapper = styled.div`
 `
 const Last = styled.div`
     margin-bottom: 30px;
+`
+const Title = styled.div`
+    font-size: 30px;
+    margin-bottom: 20px;
 `

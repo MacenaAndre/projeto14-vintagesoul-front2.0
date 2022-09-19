@@ -8,18 +8,25 @@ import { WrapperFormAuth } from "../styled-components";
 import WrapperButton from "../styled-components/WrapperButton";
 import WrapperInput from "../styled-components/WrapperInput";
 
-export default function FormAddress({ refreshAddress, setRefreshAddress }) {
-    const [state, setState] = useState("");
-	const [city, setCity] = useState("");
-	const [district, setDistrict] = useState("");
-	const [street, setStreet] = useState("");
-    const [number, setNumber] = useState("");
-    const [complement, setComplement] = useState("");
+export default function FormAddress({ 
+    refreshAddress, 
+    setRefreshAddress, 
+    state, setState, 
+    city, 
+    setCity, 
+    district, 
+    setDistrict, 
+    street, 
+    setStreet, 
+    number, 
+    setNumber, 
+    complement, 
+    setComplement,
+    setBolean
+ }) {
+    
 	const [buttonAddress, setButtonAddress] = useState(false);
 	
-	
-	
-
     function AddressConecction(e) {
 		e.preventDefault();
 		setButtonAddress(true);
@@ -39,6 +46,7 @@ export default function FormAddress({ refreshAddress, setRefreshAddress }) {
 				setButtonAddress(false)
 			})
 			.then((res) => {
+                setBolean(true);
 				setRefreshAddress(!refreshAddress);
 			})
 	}
@@ -91,15 +99,16 @@ export default function FormAddress({ refreshAddress, setRefreshAddress }) {
 						required
 					></WrapperInput>
                     <WrapperInput
-						placeholder="Complemento"
-						type="text"
-						value={complement}
-						disabled={buttonAddress}
-						onChange={(e) => setComplement(e.target.value)}
-						required
-					></WrapperInput>
+                        placeholder="Complemento"
+                        type="text"
+                        value={complement}
+                        disabled={buttonAddress}
+                        onChange={(e) => setComplement(e.target.value)}
+                        required
+                    ></WrapperInput>
+                    <Last></Last>
 					{!buttonAddress ? (
-						<WrapperButton value={"Cadastrar"} disabled={buttonAddress} />
+                        <WrapperButton value={"Salvar endereço de entrega"} disabled={buttonAddress} />
 					) : (
 						<WrapperButton
 							value={<ThreeDots color="white" height="13px" />}
@@ -115,4 +124,9 @@ export default function FormAddress({ refreshAddress, setRefreshAddress }) {
 
 const Title = styled.h4`
     margin: 100px 0px 0px 0px;
+    font-size: 30px;
+`
+const Last = styled.div`
+    margin-bottom: 30px;
+    width: 100%;
 `
