@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { WrapperFormAuth } from "../styled-components";
 import { ThreeDots } from "react-loader-spinner";
-import logo from "../../assets/img/Vintage Soul Store.png";
+import logo from "../../assets/img/logo-big.jpeg";
 import { SignUpApi } from "../../service/VintageSoulService";
 import WrapperInput from "../styled-components/WrapperInput";
 import WrapperButton from "../styled-components/WrapperButton";

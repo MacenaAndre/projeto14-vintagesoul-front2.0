@@ -20,10 +20,5 @@ const Wrapper = styled.button`
 	margin-bottom: 25px;
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	/* &&:disabled {
-		background-color: #ffffff;
-		opacity: 0.7;
-	} */
-
+	align-items: center;	
 `;

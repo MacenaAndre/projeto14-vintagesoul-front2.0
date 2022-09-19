@@ -11,8 +11,9 @@ function WrapperFormAuth({ children }) {
 const SignIn = styled.div`
 	& img {
 		height: 150px;
-		max-width: 300px;
+		max-width: 400px;
 		width: 100%;
+		margin: 30px 0px;
 		object-fit: cover;
 	}
 `;
@@ -23,8 +24,7 @@ const Wrapper = styled.div`
 	align-items: center;
 	width: 100%;
 	min-height: 100vh;
-	background-color: #ffffff;
-	padding-top: 80px;	
+	background-color: #ffffff;	
 	p {		
 		font-size: 15px;
 		font-weight: 700;

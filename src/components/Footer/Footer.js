@@ -5,7 +5,7 @@ export default function Footer() {
         <>
             <WrapperFooter>
                 <h1>Projeto Vintage Soul Store por:</h1>
-                <h2>Francksuel Barbosa e Andŕe Macêna</h2>
+                <h2>Francksuel Barbosa e André Macêna</h2>
             </WrapperFooter>
         </>
     );
@@ -17,8 +17,8 @@ const WrapperFooter = styled.div`
     width: 100%;
     padding: 30px;
     background-color: black;
-    box-shadow: 0px -8px 8px 0px #00000060;
-
+    box-shadow: 0px -6px 6px 0px #00000045;
+    bottom: 0px;
     & h1 {
         color: white;
     }
