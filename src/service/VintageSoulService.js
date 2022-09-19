@@ -65,6 +65,12 @@ function getUserAddress() {
 	return promise;
 }
 
+function postSale(){
+	const auth = getToken();
+	const promise = axios.post(`${BASE_URL}/sales`, {}, auth.token);
+	return promise;
+}
+
 export {
 	SignInApi,
 	SignUpApi,
@@ -75,5 +81,6 @@ export {
 	postCartApi,
 	deleteItemCart,
 	editUserAddress,
-	getUserAddress
+	getUserAddress,
+	postSale
 };
