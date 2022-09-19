@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://vintage-soul-store.herokuapp.com";
 
 function getToken() {
 	const auth = JSON.parse(localStorage.getItem("VintageSoul"));

@@ -9,6 +9,7 @@ import styled from "styled-components";
 import Header from "../Header/Header.js";
 import ProductInfo from "./ProductInfo.js";
 import WrapperButton from "../styled-components/WrapperButton.js";
+import Footer from "../Footer/Footer.js";
 
 export default function ProductPage() {
 	const navigate = useNavigate();
@@ -85,6 +86,7 @@ export default function ProductPage() {
 					</form>
 				</Wrapper>
 			)}
+			<Footer/>
 		</>
 	);
 }
