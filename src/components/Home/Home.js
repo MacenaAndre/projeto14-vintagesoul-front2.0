@@ -21,6 +21,7 @@ export default function Home() {
 				setProductList(res.data);
 			})
 	}, [limit])
+	
 	function nextPage() {		
 		if(productList.length === 12){
 			const newValue = Number(limit) + 1;

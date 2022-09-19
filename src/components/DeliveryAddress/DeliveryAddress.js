@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { getUserAddress } from "../../service/VintageSoulService";
 import FormAddress from "./FormAddress";
 import UserAddress from "./UserAddress";
@@ -15,7 +14,6 @@ export default function DeliveryAddress() {
 	const [street, setStreet] = useState("");
     const [number, setNumber] = useState("");
     const [complement, setComplement] = useState("");
-	const navigate = useNavigate();
     
 	useEffect(() => {
 		getUserAddress()

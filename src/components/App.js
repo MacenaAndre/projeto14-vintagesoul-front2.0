@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CheckOut from "./CheckOut/CheckOut";
+import ConfirmPurchase from "./ConfirmPurchase/ConfirmPurchase";
 import DeliveryAddress from "./DeliveryAddress/DeliveryAddress";
 
 import Home from "./Home/Home";
@@ -20,6 +21,7 @@ export default function App () {
                     <Route path="/checkout" element={<CheckOut/>}></Route>
                     <Route path="/product/:idProduct" element={<ProductPage />}></Route>
                     <Route path="/adress" element={<DeliveryAddress/>}></Route>
+                    <Route path="/confirm-purchase" element={<ConfirmPurchase/>}></Route>
                 </Routes>
             </BrowserRouter>
         </>
